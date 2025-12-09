@@ -1,5 +1,7 @@
 # Privacy Policy for Preempt AI Browser Extension
 
+**Full Privacy Policy:** https://preempt-ai.vercel.app/privacy
+
 **Last Updated: December 9, 2024**
 
 ## Overview

@@ -73,4 +73,4 @@ English
 4. Threat blocked notification
 
 ## Privacy Policy URL
-https://preempt-ai.vercel.app/privacy (or host PRIVACY_POLICY.md)
+https://preempt-ai.vercel.app/privacy
