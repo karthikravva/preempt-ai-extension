@@ -1,0 +1,24 @@
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Build artifacts
+*.zip
+dist/
+build/
+
+# Test files (keep test-page.html for development)
+# test-page.html
+
+# Python cache (from icon generator)
+__pycache__/
+*.pyc
+
+# Logs
+*.log

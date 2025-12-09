@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 380px;
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(180deg, #0f0f0f 0%, #1a1a1a 100%);
+            color: #f5f5f5;
+            min-height: 100%;
+        }
+
+        /* Header with subtle gradient */
+        .header {
+            padding: 20px;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.15) 0%, rgba(139, 92, 246, 0.1) 100%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .logo {
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .header-text .title {
+            font-size: 20px;
+            font-weight: 600;
+            background: linear-gradient(135deg, #f5f5f5 0%, #a5a5a5 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header-text .subtitle {
+            font-size: 12px;
+            color: #8b8b8b;
+            margin-top: 2px;
+        }
+
+        .content {
+            padding: 16px;
+        }
+
+        /* Glass-morphism cards */
+        .card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 14px;
+            padding: 16px;
+            margin-bottom: 14px;
+        }
+
+        /* Status section */
+        .status-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        .status-row:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .status-row:first-child {
+            padding-top: 0;
+        }
+
+        .status-label {
+            font-size: 13px;
+            color: #888;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .status-label .icon {
+            font-size: 14px;
+            opacity: 0.7;
+        }
+
+        .status-value {
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .status-value.online {
+            color: #22c55e;
+        }
+
+        .status-value.offline {
+            color: #f97316;
+        }
+
+        /* Modern toggle */
+        .toggle {
+            position: relative;
+            width: 46px;
+            height: 26px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 13px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .toggle.active {
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            box-shadow: 0 2px 8px rgba(99, 102, 241, 0.4);
+        }
+
+        .toggle-knob {
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .toggle.active .toggle-knob {
+            transform: translateX(20px);
+        }
+
+        /* Feature highlight */
+        .feature-card {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(139, 92, 246, 0.05) 100%);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            border-radius: 12px;
+            padding: 14px 16px;
+            margin-bottom: 14px;
+        }
+
+        .feature-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: #a5b4fc;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .feature-desc {
+            font-size: 12px;
+            color: #7c7c7c;
+            margin-top: 6px;
+            line-height: 1.5;
+        }
+
+        /* Section headers */
+        .section-header {
+            font-size: 11px;
+            font-weight: 600;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            padding-left: 2px;
+        }
+
+        /* Input area */
+        .input-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 14px;
+            padding: 14px;
+        }
+
+        textarea {
+            width: 100%;
+            height: 90px;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            padding: 12px;
+            color: #e5e5e5;
+            font-size: 13px;
+            font-family: inherit;
+            resize: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: rgba(99, 102, 241, 0.5);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+        }
+
+        textarea::placeholder {
+            color: #555;
+        }
+
+        /* Buttons */
+        .btn {
+            width: 100%;
+            padding: 12px 16px;
+            border: none;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-top: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            color: white;
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 16px rgba(99, 102, 241, 0.4);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+
+        .btn-primary:disabled {
+            background: rgba(255, 255, 255, 0.1);
+            color: #666;
+            cursor: not-allowed;
+            box-shadow: none;
+            transform: none;
+        }
+
+        /* Results */
+        .result-area {
+            display: none;
+            margin-top: 14px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .result-area.visible {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-5px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .result-label {
+            font-size: 11px;
+            font-weight: 600;
+            color: #22c55e;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .result-box {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            padding: 12px;
+            font-size: 13px;
+            line-height: 1.6;
+            max-height: 100px;
+            overflow-y: auto;
+            color: #ccc;
+        }
+
+        /* Badges */
+        .badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 12px;
+        }
+
+        .badge {
+            padding: 5px 10px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .badge-safe {
+            background: rgba(34, 197, 94, 0.15);
+            color: #4ade80;
+            border: 1px solid rgba(34, 197, 94, 0.2);
+        }
+
+        .badge-pii {
+            background: rgba(251, 191, 36, 0.15);
+            color: #fbbf24;
+            border: 1px solid rgba(251, 191, 36, 0.2);
+        }
+
+        .badge-threat {
+            background: rgba(249, 115, 22, 0.15);
+            color: #fb923c;
+            border: 1px solid rgba(249, 115, 22, 0.2);
+        }
+
+        /* Copy button */
+        .btn-copy {
+            width: 100%;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 8px;
+            color: #aaa;
+            font-size: 13px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .btn-copy:hover {
+            background: rgba(255, 255, 255, 0.08);
+            color: #ddd;
+        }
+
+        .btn-copy.copied {
+            background: rgba(34, 197, 94, 0.15);
+            border-color: rgba(34, 197, 94, 0.3);
+            color: #4ade80;
+        }
+
+        /* Error state */
+        .error {
+            background: rgba(249, 115, 22, 0.1);
+            border: 1px solid rgba(249, 115, 22, 0.2);
+            color: #fb923c;
+            padding: 12px;
+            border-radius: 10px;
+            font-size: 13px;
+            margin-top: 12px;
+            display: none;
+        }
+
+        .error.visible {
+            display: block;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 14px 16px;
+            border-top: 1px solid rgba(255, 255, 255, 0.04);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-link {
+            font-size: 12px;
+            color: #666;
+            text-decoration: none;
+            transition: color 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .footer-link:hover {
+            color: #a5b4fc;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <div class="logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+                <path d="M32 4 L56 14 L56 30 C56 46 32 58 32 58 C32 58 8 46 8 30 L8 14 Z" fill="none" stroke="#10a37f"
+                    stroke-width="4" stroke-linejoin="round" />
+                <path d="M22 32 L28 38 L42 24" fill="none" stroke="#10a37f" stroke-width="4" stroke-linecap="round"
+                    stroke-linejoin="round" />
+            </svg></div>
+        <div class="header-text">
+            <div class="title">Preempt AI</div>
+            <div class="subtitle">v1.0 • Security for AI</div>
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="card">
+            <div class="status-row">
+                <span class="status-label">
+                    <span class="icon">⚡</span>
+                    Protection
+                </span>
+                <div class="toggle active" id="protectionToggle">
+                    <div class="toggle-knob"></div>
+                </div>
+            </div>
+            <div class="status-row">
+                <span class="status-label">
+                    <span class="icon">🌐</span>
+                    Current Site
+                </span>
+                <span class="status-value" id="currentSite">—</span>
+            </div>
+            <div class="status-row">
+                <span class="status-label">
+                    <span class="icon">📡</span>
+                    API Status
+                </span>
+                <span class="status-value online" id="apiStatus">Checking...</span>
+            </div>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-title">
+                ✨ Automatic Protection Active
+            </div>
+            <div class="feature-desc">
+                Preempt scans every prompt before sending. Works seamlessly on ChatGPT, Claude, Gemini & more.
+            </div>
+        </div>
+
+        <div class="section-header">Quick Scan</div>
+        <div class="input-card">
+            <textarea id="inputText" placeholder="Paste a prompt to scan for threats & PII..."></textarea>
+            <button class="btn btn-primary" id="sanitizeBtn">
+                <span>🔍</span>
+                <span>Scan & Protect</span>
+            </button>
+
+            <div class="error" id="errorMsg"></div>
+
+            <div class="result-area" id="resultArea">
+                <div class="result-label">✓ Scan Complete</div>
+                <div class="result-box" id="resultText"></div>
+                <div class="badges" id="piiBadges"></div>
+                <button class="btn-copy" id="copyBtn">
+                    <span>📋</span>
+                    <span>Copy Protected Prompt</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <a href="https://preempt-ai.vercel.app" target="_blank" class="footer-link">
+            <span>🚀</span> Full App
+        </a>
+        <a href="https://preempt-production.up.railway.app/docs" target="_blank" class="footer-link">
+            <span>📚</span> API Docs
+        </a>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+
+</html>

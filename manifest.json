@@ -1,0 +1,89 @@
+{
+  "manifest_version": 3,
+  "name": "Preempt AI - Security for AI Applications",
+  "version": "1.0.0",
+  "description": "Protect your AI interactions from prompt injection, jailbreaks, and data leaks. Works on ChatGPT, Claude, Gemini & more.",
+  "homepage_url": "https://preempt-ai.vercel.app",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "permissions": [
+    "activeTab",
+    "storage"
+  ],
+  "host_permissions": [
+    "https://preempt-production.up.railway.app/*"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://chat.openai.com/*",
+        "https://chatgpt.com/*",
+        "https://claude.ai/*",
+        "https://gemini.google.com/*",
+        "https://aistudio.google.com/*",
+        "https://perplexity.ai/*",
+        "https://www.perplexity.ai/*",
+        "https://poe.com/*",
+        "https://*.huggingface.co/*",
+        "https://huggingface.co/chat/*",
+        "https://copilot.microsoft.com/*",
+        "https://www.bing.com/chat/*",
+        "https://you.com/*",
+        "https://pi.ai/*",
+        "https://heypi.com/*",
+        "https://groq.com/*",
+        "https://console.groq.com/*",
+        "https://chat.mistral.ai/*",
+        "https://labs.perplexity.ai/*",
+        "https://www.jasper.ai/*",
+        "https://app.jasper.ai/*",
+        "https://www.copy.ai/*",
+        "https://app.copy.ai/*",
+        "https://writesonic.com/*",
+        "https://app.writesonic.com/*",
+        "https://www.notion.so/*",
+        "https://beta.character.ai/*",
+        "https://character.ai/*",
+        "https://www.phind.com/*",
+        "https://phind.com/*",
+        "https://www.forefront.ai/*",
+        "https://chat.forefront.ai/*",
+        "https://open-assistant.io/*",
+        "https://www.together.ai/*",
+        "https://api.together.xyz/*",
+        "https://cohere.com/*",
+        "https://dashboard.cohere.com/*",
+        "https://coral.cohere.com/*",
+        "https://deepai.org/*",
+        "https://www.deepai.org/*",
+        "https://replicate.com/*",
+        "https://www.llama2.ai/*",
+        "https://labs.google/*",
+        "https://makersuite.google.com/*",
+        "https://bard.google.com/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "css": [
+        "content.css"
+      ],
+      "run_at": "document_idle",
+      "all_frames": true
+    }
+  ],
+  "background": {
+    "service_worker": "background.js"
+  }
+}

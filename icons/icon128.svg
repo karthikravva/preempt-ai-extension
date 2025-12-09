@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <!-- Shield outline -->
+  <path d="M64 8 L112 28 L112 60 C112 92 64 120 64 120 C64 120 16 92 16 60 L16 28 Z" 
+        fill="none" 
+        stroke="#10a37f" 
+        stroke-width="8"
+        stroke-linejoin="round"/>
+  
+  <!-- Checkmark -->
+  <path d="M44 64 L56 76 L84 48" 
+        fill="none" 
+        stroke="#10a37f" 
+        stroke-width="8" 
+        stroke-linecap="round" 
+        stroke-linejoin="round"/>
+</svg>

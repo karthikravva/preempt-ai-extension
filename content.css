@@ -1,0 +1,13 @@
+/* Preempt v2.0.0 - Content Styles
+   Note: Most styles are injected dynamically by content.js
+   This file provides fallback/override styles if needed */
+
+/* Ensure modal always appears on top */
+.preempt-modal-bg {
+    z-index: 2147483647 !important;
+}
+
+/* Ensure toast notifications are visible */
+.preempt-toast {
+    z-index: 2147483647 !important;
+}
