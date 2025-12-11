@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "Preempt AI - Security for AI Applications",
-  "version": "1.0.0",
-  "description": "Protect your AI interactions from prompt injection, jailbreaks, and data leaks. Works on ChatGPT, Claude, Gemini & more.",
+  "version": "1.0.1",
+  "description": "Automatically protect sensitive data like SSNs, emails, and credit cards before sharing with AI assistants.",
   "homepage_url": "https://preempt-ai.vercel.app",
   "icons": {
     "16": "icons/icon16.png",

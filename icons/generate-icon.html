@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Preempt Icon Generator</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px;
+            background: #1a1a1a;
+            color: white;
+        }
+
+        .preview {
+            display: flex;
+            gap: 40px;
+            margin: 20px 0;
+            align-items: end;
+        }
+
+        .icon-box {
+            text-align: center;
+        }
+
+        .icon-box canvas {
+            border: 1px solid #333;
+            border-radius: 8px;
+        }
+
+        .icon-box p {
+            margin-top: 8px;
+            color: #888;
+        }
+
+        button {
+            background: #10a37f;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 10px;
+        }
+
+        button:hover {
+            background: #0d8a6a;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Preempt AI Icon Generator</h1>
+    <p>Click buttons below to download icons</p>
+
+    <div class="preview">
+        <div class="icon-box">
+            <canvas id="canvas128" width="128" height="128"></canvas>
+            <p>128x128</p>
+            <button onclick="download(128)">Download 128px</button>
+        </div>
+        <div class="icon-box">
+            <canvas id="canvas48" width="48" height="48"></canvas>
+            <p>48x48</p>
+            <button onclick="download(48)">Download 48px</button>
+        </div>
+        <div class="icon-box">
+            <canvas id="canvas16" width="16" height="16"></canvas>
+            <p>16x16</p>
+            <button onclick="download(16)">Download 16px</button>
+        </div>
+    </div>
+
+    <script>
+        const accentColor = '#10a37f';
+
+        function drawIcon(canvas, size) {
+            const ctx = canvas.getContext('2d');
+            const scale = size / 128;
+
+            // Clear canvas
+            ctx.clearRect(0, 0, size, size);
+
+            // Optional: Add background for visibility
+            // ctx.fillStyle = '#ffffff';
+            // ctx.fillRect(0, 0, size, size);
+
+            ctx.save();
+            ctx.scale(scale, scale);
+
+            // Shield path
+            ctx.beginPath();
+            ctx.moveTo(64, 12);
+            ctx.lineTo(108, 30);
+            ctx.lineTo(108, 58);
+            ctx.bezierCurveTo(108, 88, 64, 116, 64, 116);
+            ctx.bezierCurveTo(64, 116, 20, 88, 20, 58);
+            ctx.lineTo(20, 30);
+            ctx.closePath();
+
+            // Fill shield with gradient
+            const gradient = ctx.createLinearGradient(20, 12, 108, 116);
+            gradient.addColorStop(0, '#10a37f');
+            gradient.addColorStop(1, '#0d8a6a');
+            ctx.fillStyle = gradient;
+            ctx.fill();
+
+            // Checkmark
+            ctx.beginPath();
+            ctx.moveTo(44, 62);
+            ctx.lineTo(58, 76);
+            ctx.lineTo(84, 50);
+            ctx.strokeStyle = 'white';
+            ctx.lineWidth = 8;
+            ctx.lineCap = 'round';
+            ctx.lineJoin = 'round';
+            ctx.stroke();
+
+            ctx.restore();
+        }
+
+        function download(size) {
+            const canvas = document.getElementById('canvas' + size);
+            const link = document.createElement('a');
+            link.download = 'icon' + size + '.png';
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        }
+
+        // Draw all icons on load
+        [128, 48, 16].forEach(size => {
+            drawIcon(document.getElementById('canvas' + size), size);
+        });
+    </script>
+</body>
+
+</html>
