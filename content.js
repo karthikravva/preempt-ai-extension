@@ -53,6 +53,7 @@
         [/unrestricted/i, 'Constraint Removal', 'jailbreak'],
         [/bypass\s+(the\s+)?(safety|filter|guard)/i, 'Refusal Suppression', 'jailbreak'],
         [/disable\s+(the\s+)?(safety|filter|guard)/i, 'Refusal Suppression', 'jailbreak'],
+        [/ignore\s+(all\s+)?(safety|ethical|content)\s+(guidelines?|rules?|restrictions?)/i, 'Constraint Removal', 'jailbreak'],
         [/hypothetically/i, 'Hypothetical Framing', 'jailbreak'],
         [/for\s+(educational|research)\s+purposes/i, 'Hypothetical Framing', 'jailbreak'],
         [/imagine\s+you\s+(are|were|can)/i, 'Hypothetical Framing', 'jailbreak'],

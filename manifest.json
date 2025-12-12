@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Preempt AI - Security for AI Applications",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Automatically protect sensitive data like SSNs, emails, and credit cards before sharing with AI assistants.",
   "homepage_url": "https://preempt-ai.vercel.app",
   "icons": {
