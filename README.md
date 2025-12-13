@@ -54,7 +54,7 @@
 ## 🚀 Installation
 
 ### Chrome Web Store (Recommended)
-> 🔜 Coming Soon!
+> https://chromewebstore.google.com/detail/preempt-ai-security-for-a/ohchmglenolildeoiaeiebibobefncon
 
 ### Manual Installation
 
